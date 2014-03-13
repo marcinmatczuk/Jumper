@@ -64,6 +64,12 @@ static Jumper *sharedPlugin;
 
 - (void)goUp
 {
+    NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
+    if (!([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
+        NSBeep();
+        return;
+    }
+    
     for (NSUInteger i = 0; i < kMovementStep; i++) {
         [[[[NSApplication sharedApplication] keyWindow] firstResponder] moveUp:self];
     }
@@ -71,6 +77,12 @@ static Jumper *sharedPlugin;
 
 - (void)goDown
 {
+    NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
+    if (!([firstResponder isKindOfClass:NSClassFromString(@"DVTSourceTextView")] && [firstResponder isKindOfClass:[NSTextView class]])) {
+        NSBeep();
+        return;
+    }
+    
     for (NSUInteger i = 0; i < kMovementStep; i++) {
         [[[[NSApplication sharedApplication] keyWindow] firstResponder] moveDown:self];
     }
